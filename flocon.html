@@ -10,7 +10,18 @@
 
 <body>
     <header class="header-outil">
-        <a href="index.html"><img src="assets\img\logo_dark_petit.svg" alt="petit logo"></a>
+        <button class="burger" id="burger-btn">☰</button>
+        <nav class="mobile-nav" id="mobile-nav">
+            <a href="index.html">Accueil</a>
+            <div class="mobile-dropdown">
+                <button class="mobile-dropdown-toggle">Autres outils <span class="arrow">▼</span></button>
+                <div class="mobile-dropdown-content">
+                    <a href="arbre.html">L'arbre fractal</a>
+                    <a href="chaos.html">Le jeu du chaos</a>
+                </div>
+            </div>
+        </nav>
+        <a class="logo-header" href="index.html"><img src="assets\img\logo_dark_petit.svg" alt="petit logo"></a>
         <div class="type-outil">
             <img src="assets\img\flocon-blanc.svg" alt="flocon">
             <p>Le flocon</p>
@@ -50,7 +61,7 @@
         </div>
 
     </div>
-    <script src="assets\javascript\script.js"></script>
+    <script src="assets\javascript\script_outil.js"></script>
 </body>
 
 </html>
