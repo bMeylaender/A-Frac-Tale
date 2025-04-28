@@ -342,6 +342,12 @@ footer {
   color: white;
   font-family: "Tektur";
 }
+
+.mentions-footer a:hover {
+  text-decoration: underline;
+  color: #dcdcdc;
+}
+
 /* Responsive */
 
 /* mobile */
@@ -376,6 +382,11 @@ footer {
     font-size: clamp(0.4rem, 4vw, 1.5rem);
     padding: 0 1rem;
   }
+
+  footer {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
 /* tablettes */
@@ -392,6 +403,11 @@ footer {
   .presentation-text {
     font-size: clamp(1.75rem, 4vw, 2.5rem);
     padding: 0 2rem;
+  }
+
+  footer {
+    flex-direction: column;
+    text-align: center;
   }
 }
 
