@@ -46,9 +46,16 @@
             </div>
         </div>
     </header>
-    
+    <div class="modal-container">
+        <div class="overlay modal-trigger" ></div>
+        <div class="modal">
+            <button class="close-modal modal-trigger">×</button>
+            <h2>L'arbre fractal</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat vitae eveniet ea magnam! Veritatis similique incidunt facere neque magni mollitia, impedit nemo harum, quasi, illum atque officia earum eius ab.</p>
+        </div>
+    </div>
     <div class="options-container">
-        <div class="help">?</div>
+        <div class="help"><button class="modal-btn modal-trigger">?</button></div>
         <div class="controls">
             <div class="control-group">
                 <label>Angle (°)</label>
@@ -88,5 +95,6 @@
     </div>
     <canvas id="canvas"></canvas>
     <script src="assets\javascript\script_outil.js"></script>
+    <script src="assets\javascript\script_arbre.js"></script>
 </body>
 </html>

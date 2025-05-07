@@ -455,6 +455,8 @@ footer {
   display: flex;
   justify-content: center;
   flex-direction: row-reverse;
+  resize: vertical;
+  overflow: auto;
 }
 
 .controls {
@@ -612,7 +614,8 @@ input[type="color"]::-moz-color-swatch {
   border: none;
 }
 
-.help:hover,
+.close-modal:hover,
+.modal-btn:hover,
 .controls button:hover {
   background-color: rgb(255, 255, 255);
   color: black;
@@ -623,7 +626,8 @@ input[type="color"]::-moz-color-swatch {
   stroke: #000000;
 }
 
-.help {
+.modal-btn,
+.close-modal {
   display: flex;
   width: 39px;
   height: 39px;
@@ -637,6 +641,57 @@ input[type="color"]::-moz-color-swatch {
   font-family: "Tektur";
   font-size: 32px;
   font-weight: 600;
+}
+
+.modal-container {
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  transition: visibility 0.4s ease-in-out;
+}
+
+.modal-container.active {
+  visibility: visible;
+}
+
+.modal-container.active .overlay {
+  opacity: 1;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.modal-container.active ~ .options-container {
+  display: none;
+}
+
+.overlay {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(51, 51, 51, 0.8);
+  transition: opacity 0.4s ease-in-out;
+}
+
+.modal {
+  opacity: 0;
+  width: 95%;
+  max-width: 500px;
+  padding: 30px;
+  background: white;
+  border-radius: 5px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out; /* Added transform easing */
+}
+
+.modal-container.active .modal {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1); /* Smooth scaling effect */
+  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out; /* Updated easing */
 }
 
 .dropdown {
