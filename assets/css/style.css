@@ -5,7 +5,7 @@
 }
 
 @font-face {
-  font-family: "Tektur", sans-serif;
+  font-family: "Tektur";
   src: url("../fonts/Tektur/Tektur-VariableFont_wdth,wght.woff2")
       format("woff2"),
     url("../fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf") format("truetype");
