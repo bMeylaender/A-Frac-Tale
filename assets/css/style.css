@@ -5,7 +5,7 @@
 }
 
 @font-face {
-  font-family: "Tektur";
+  font-family: "Tektur", sans-serif;
   src: url("../fonts/Tektur/Tektur-VariableFont_wdth,wght.woff2")
       format("woff2"),
     url("../fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf") format("truetype");
@@ -45,7 +45,6 @@
 }
 
 #start .wave span {
-  content: "";
   position: absolute;
   width: 325vh;
   height: 325vh;
@@ -143,7 +142,7 @@
   text-align: center;
   font-family: "Major Mono Display";
   font-size: 128px;
-  font-weight: 400;
+  font-size: clamp(2.5rem, 10vw, 8rem);
   margin-bottom: 7rem;
 }
 
@@ -216,7 +215,7 @@
   height: inherit;
   position: relative;
   transform-style: preserve-3d;
-  transition: 0.6s 0.1s;
+  transition: 0.6s;
 }
 
 .flip-card-container:hover .flip-card,
@@ -439,7 +438,7 @@ footer {
   font-size: 2rem;
 }
 
-.options-container {
+.pannel {
   background-color: #5463aa;
   width: 90vw;
   max-width: 41.25rem;
@@ -454,9 +453,33 @@ footer {
   border-radius: 10px;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+}
+
+.options-container {
+  display: flex;
   flex-direction: row-reverse;
-  resize: vertical;
   overflow: auto;
+  margin-top: 1rem;
+}
+
+.options-container.active {
+  display: none;
+}
+
+.pannel.active {
+  height: 3rem;
+}
+
+.hide-show {
+  background-color: rgba(31, 36, 69, 1);
+  border: solid white;
+  color: white;
+  font-family: "Tektur";
+  font-weight: 600;
+  width: 10rem;
+  height: 4.375rem;
+  border-radius: 5px;
 }
 
 .controls {
@@ -677,6 +700,7 @@ input[type="color"]::-moz-color-swatch {
 .modal {
   opacity: 0;
   width: 95%;
+  height: 70%;
   max-width: 500px;
   padding: 30px;
   background: white;
@@ -686,12 +710,73 @@ input[type="color"]::-moz-color-swatch {
   left: 50%;
   transform: translate(-50%, -50%);
   transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out; /* Added transform easing */
+  overflow: auto;
+  font-family: "Tektur", sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal-container.active .modal {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1); /* Smooth scaling effect */
   transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out; /* Updated easing */
+}
+
+.close-modal-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.modal-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.modal-description {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.modal-list,
+.modal-sublist {
+  list-style: none;
+  padding-left: 1.2rem;
+}
+
+.modal-subtitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.modal-step {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
+  color: #333;
+}
+
+.modal-text {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.modal-bullets {
+  list-style: disc;
+  margin-left: 1.5rem;
+  color: #333;
+}
+
+.modal-bullets li {
+  margin-bottom: 0.5rem;
 }
 
 .dropdown {
@@ -898,7 +983,7 @@ input[type="color"]::-moz-color-swatch {
     font-size: 2rem;
   }
 
-  .options-container {
+  .pannel {
     width: 95vw;
     min-width: 260px;
     padding: 1rem;

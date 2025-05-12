@@ -23,4 +23,18 @@ document.addEventListener("DOMContentLoaded", function () {
     modalContainer.classList.toggle("active");
     mobileNav.classList.remove("active");
   }
+
+  const hideBtn = document.querySelector(".hide-show");
+  const optionsContainer = document.querySelector(".options-container");
+  const pannel = document.querySelector(".pannel");
+
+  hideBtn.addEventListener("click", function () {
+    optionsContainer.classList.toggle("active");
+    pannel.classList.toggle("active");
+    if (optionsContainer.classList.contains("active")) {
+      hideBtn.innerText = "Show";
+    } else {
+      hideBtn.innerText = "Hide";
+    }
+  });
 });

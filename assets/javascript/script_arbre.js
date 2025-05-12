@@ -98,8 +98,7 @@ render();
 
 function resizeCanvas() {
   canvas.width = window.innerWidth;
-  canvas.height =
-    window.innerHeight - document.querySelector(".controls").offsetHeight - 60;
+  canvas.height = window.innerHeight - 150;
   render();
 }
 
@@ -136,8 +135,28 @@ canvas.addEventListener("mousemove", (e) => {
   render();
 });
 
+canvas.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  isPanning = true;
+  const touch = e.touches[0];
+  startPan = { x: touch.clientX, y: touch.clientY };
+});
+
+canvas.addEventListener("touchmove", (e) => {
+  e.preventDefault();
+  if (!isPanning) return;
+  const touch = e.touches[0];
+  const dx = touch.clientX - startPan.x;
+  const dy = touch.clientY - startPan.y;
+  offsetX += dx;
+  offsetY += dy;
+  startPan = { x: touch.clientX, y: touch.clientY };
+  render();
+});
+
 canvas.addEventListener("mouseup", () => (isPanning = false));
 canvas.addEventListener("mouseleave", () => (isPanning = false));
+canvas.addEventListener("touchend", () => (isPanning = false));
 
 function resetView() {
   scale = 1;
@@ -153,4 +172,43 @@ document.getElementById("save").addEventListener("click", () => {
   link.download = "mon_arbre_fractal.png";
   link.href = canvas.toDataURL();
   link.click();
+});
+
+let lastTouchDistance = null;
+
+canvas.addEventListener("touchmove", (e) => {
+  if (e.touches.length === 2) {
+    e.preventDefault();
+
+    const touch1 = e.touches[0];
+    const touch2 = e.touches[1];
+
+    const currentDistance = Math.sqrt(
+      Math.pow(touch2.clientX - touch1.clientX, 2) +
+        Math.pow(touch2.clientY - touch1.clientY, 2)
+    );
+
+    if (lastTouchDistance) {
+      const zoomFactor = 1.03;
+      const zoom =
+        currentDistance > lastTouchDistance ? zoomFactor : 1 / zoomFactor;
+
+      const centerX = (touch1.clientX + touch2.clientX) / 2;
+      const centerY = (touch1.clientY + touch2.clientY) / 2;
+
+      offsetX = centerX - (centerX - offsetX) * zoom;
+      offsetY = centerY - (centerY - offsetY) * zoom;
+
+      scale *= zoom;
+      render();
+    }
+
+    lastTouchDistance = currentDistance;
+  }
+});
+
+canvas.addEventListener("touchend", (e) => {
+  if (e.touches.length < 2) {
+    lastTouchDistance = null;
+  }
 });

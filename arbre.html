@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="assets\css\style.css">
     <title>L'arbre fractal</title>
 </head>
-<body>
+<body id="abre-body">
     <header class="header-outil">
         <button class="burger" id="burger-btn">☰</button>
         <nav class="mobile-nav" id="mobile-nav">
@@ -49,11 +49,66 @@
     <div class="modal-container">
         <div class="overlay modal-trigger" ></div>
         <div class="modal">
-            <button class="close-modal modal-trigger">×</button>
-            <h2>L'arbre fractal</h2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat vitae eveniet ea magnam! Veritatis similique incidunt facere neque magni mollitia, impedit nemo harum, quasi, illum atque officia earum eius ab.</p>
+            <div class="close-modal-container">
+                <button class="close-modal modal-trigger">×</button>
+            </div>
+            <h2 class="modal-title">L'arbre fractal</h2>
+            <p class="modal-description">Un arbre fractal est une structure récursive qui imite la croissance naturelle des
+                branches d'un arbre. Voici comment le construire étape par étape :</p>
+            <ol class="modal-list">
+                <li>
+                    <h3 class="modal-subtitle">Concept de base</h3>
+                    <p class="modal-text">Un arbre fractal est dessiné en partant d'un tronc principal, puis en ajoutant des
+                        branches secondaires qui se divisent à leur tour en branches plus petites. Ce processus est répété
+                        récursivement jusqu'à atteindre une profondeur définie.</p>
+                </li>
+                <li>
+                    <h3 class="modal-subtitle">Étapes pour le construire</h3>
+                    <ol class="modal-sublist">
+                        <li>
+                            <h4 class="modal-step">1. Initialisation</h4>
+                            <ul class="modal-bullets">
+                                <li>Créez un point de départ (par exemple, la base du tronc).</li>
+                                <li>Définissez la longueur initiale du tronc, l'angle de division, et la profondeur maximale de
+                                    récursion.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h4 class="modal-step">2. Récursion</h4>
+                            <p class="modal-text">À chaque étape :</p>
+                            <ul class="modal-bullets">
+                                <li>Dessinez une branche à partir du point de départ.</li>
+                                <li>Divisez cette branche en deux (ou plus) branches filles.</li>
+                                <li>Réduisez la longueur et l'épaisseur des branches filles.</li>
+                                <li>Appliquez une rotation (positive et négative) pour créer un angle entre les branches filles.
+                                </li>
+                                <li>Répétez ce processus pour chaque branche fille jusqu'à atteindre la profondeur maximale.
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h4 class="modal-step">3. Arrêt de la récursion</h4>
+                            <p class="modal-text">La récursion s'arrête lorsque la profondeur atteint 0 ou que la longueur des
+                                branches devient trop petite.</p>
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    <h3 class="modal-subtitle">Personnalisation</h3>
+                    <p class="modal-text">Vous pouvez personnaliser l'arbre fractal en modifiant :</p>
+                    <ul class="modal-bullets">
+                        <li><strong>Profondeur :</strong> Contrôle le nombre de divisions.</li>
+                        <li><strong>Angle :</strong> Change l'angle entre les branches.</li>
+                        <li><strong>Facteur de réduction :</strong> Ajuste la taille des branches filles.</li>
+                        <li><strong>Couleurs :</strong> Ajoutez des dégradés ou des couleurs dynamiques pour chaque branche.
+                        </li>
+                    </ul>
+                </li>
+            </ol>
         </div>
     </div>
+    <div class="pannel">
+        <button class="hide-show"> Hide</button>
     <div class="options-container">
         <div class="help"><button class="modal-btn modal-trigger">?</button></div>
         <div class="controls">
@@ -63,7 +118,7 @@
             </div>
             <div class="control-group">
                 <label>Profondeur</label>
-                <input type="range" id="depth" min="1" max="12" value="10">
+                <input type="range" id="depth" min="1" max="12" value="8">
             </div>
             <div class="control-group">
                 <label>Longueur</label>
@@ -92,6 +147,7 @@
             </button>
         </div>
         
+    </div>
     </div>
     <canvas id="canvas"></canvas>
     <script src="assets\javascript\script_outil.js"></script>

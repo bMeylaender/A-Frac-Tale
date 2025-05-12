@@ -51,13 +51,61 @@
     <div class="modal-container">
         <div class="overlay modal-trigger"></div>
         <div class="modal">
-            <button class="close-modal modal-trigger">×</button>
-            <h2>L'arbre fractal</h2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat vitae eveniet ea magnam! Veritatis
-                similique incidunt facere neque magni mollitia, impedit nemo harum, quasi, illum atque officia earum eius
-                ab.</p>
+            <div class="close-modal-container">
+                <button class="close-modal modal-trigger">×</button>
+            </div>
+            <h2 class="modal-title">Le flocon de Koch</h2>
+            <p class="modal-description">Le flocon de Koch est une figure fractale célèbre qui est construite en
+                répétant un processus de division sur les côtés d'un triangle équilatéral. Voici comment le construire étape par
+                étape :</p>
+            <ol class="modal-list">
+                <li>
+                    <h3 class="modal-subtitle">Concept de base</h3>
+                    <p class="modal-text">Le flocon de Koch commence par un triangle équilatéral. À chaque
+                        itération, chaque segment de ligne est divisé en trois parties égales, et un nouveau triangle
+                        équilatéral est ajouté au milieu du segment, créant ainsi une forme en "pic".</p>
+                </li>
+                <li>
+                    <h3 class="modal-subtitle">Étapes pour le construire</h3>
+                    <ol class="modal-sublist">
+                        <li>
+                            <h4 class="modal-step">1. Initialisation</h4>
+                            <ul class="modal-bullets">
+                                <li>Commencez par dessiner un triangle équilatéral.</li>
+                                <li>Définissez le nombre d'itérations (profondeur).</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h4 class="modal-step">2. Division</h4>
+                            <p class="modal-text">Pour chaque segment de ligne :</p>
+                            <ul class="modal-bullets">
+                                <li>Divisez le segment en trois parties égales.</li>
+                                <li>Ajoutez un triangle équilatéral au milieu du segment.</li>
+                                <li>Supprimez la base du triangle ajouté.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h4 class="modal-step">3. Répétition</h4>
+                            <p class="modal-text">Répétez le processus pour chaque segment de ligne nouvellement
+                                créé, jusqu'à atteindre la profondeur définie.</p>
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    <h3 class="modal-subtitle">Personnalisation</h3>
+                    <p class="modal-text">Vous pouvez personnaliser le flocon de Koch en modifiant :</p>
+                    <ul class="modal-bullets">
+                        <li><strong>Profondeur :</strong> Contrôle le nombre d'itérations.</li>
+                        <li><strong>Couleurs :</strong> Changez la couleur des lignes ou du fond.</li>
+                        <li><strong>Épaisseur des lignes :</strong> Ajustez l'épaisseur pour un rendu
+                            différent.</li>
+                    </ul>
+                </li>
+            </ol>
         </div>
     </div>
+    <div class="pannel">
+        <button class="hide-show"> Hide</button>
     <div class="options-container">
         <div class="help"><button class="modal-btn modal-trigger">?</button></div>
         <div class="controls">
@@ -67,7 +115,7 @@
             </div> -->
             <div class="control-group">
                 <label>Profondeur</label>
-                <input type="range" id="depth" min="0" max="5" value="10">
+                <input type="range" id="depth" min="0" max="5" value="3">
             </div>
             <!-- <div class="control-group">
                 <label>Longueur</label>
@@ -98,7 +146,9 @@
         </div>
     
     </div>
+    </div>
     <canvas id="canvas"></canvas>
+    <script src="assets\javascript\script_outil.js"></script>
     <script src="assets\javascript\script_flocon.js"></script>
 </body>
 
