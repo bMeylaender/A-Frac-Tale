@@ -23,25 +23,63 @@
 
 /* PAGE D'ACCUEIL */
 
+header {
+  position: absolute;
+  background-color: rgba(25, 29, 55, 0.8);
+  height: 6rem;
+  width: 100vw;
+  z-index: 99;
+  top: -20%;
+  transition: top 0.5s ease-in-out;
+}
+
+header.active {
+  top: 0;
+}
+
+header div {
+  display: flex;
+  height: 100%;
+  justify-content: space-around;
+  align-items: center;
+  margin-left: 30vw;
+}
+
+header svg {
+  width: 10rem;
+}
+
+header a {
+  font-size: 1.5rem;
+  text-decoration: underline;
+  font-weight: 600;
+  color: white;
+  font-family: "Tektur";
+}
+
 /* Section start avec animation */
 #start {
   position: relative;
   width: 100%;
-  height: 110vh;
+  height: 100vh;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
 }
 
 #start .wave {
   position: absolute;
   left: 0;
+  top: 0%;
   width: 100%;
   height: 100%;
   background: #5463aa;
-  transition: 0.5s;
+  transition: top 0.5s ease-in-out;
+}
+
+.wave.scrolled {
+  top: -100% !important;
 }
 
 #start .wave span {
@@ -99,7 +137,7 @@
   top: -10%;
 }
 
-.about {
+/* .about {
   position: absolute;
   z-index: 1;
   right: 10%;
@@ -112,7 +150,7 @@
   text-decoration: underline;
   font-weight: 600;
   color: white;
-}
+} */
 
 #start svg {
   width: 35rem;
@@ -127,6 +165,27 @@
   background-color: #5463aa;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
+  position: fixed;
+  top: 100vh;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  overflow-y: auto;
+  height: 100vh;
+  transition: top 0.5s ease-in-out;
+}
+
+#hero.scrolled {
+  top: 0;
+}
+
+#hero {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+#hero::-webkit-scrollbar {
+  display: none;
 }
 
 .presentation-container {
@@ -177,23 +236,39 @@
 }
 
 .fade-in-up.delay-1 {
-  animation-delay: 0.3s;
-}
-
-.fade-in-up.delay-2 {
   animation-delay: 0.6s;
-}
-
-.fade-in-up.delay-3 {
-  animation-delay: 0.9s;
 }
 
 /* Section outils */
 #outils {
   background-color: rgba(25, 29, 55, 1);
-  padding: 2.5rem;
-  padding-top: 10rem;
-  padding-bottom: 10rem;
+  padding-top: 12.5rem;
+  position: fixed;
+  top: 100vh;
+  width: 100%;
+  z-index: 20;
+  transition: top 0.5s ease-in-out;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+#outils.scrolled {
+  top: 0 !important;
+}
+
+#outils {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+#outils::-webkit-scrollbar {
+  display: none;
+}
+
+#grid {
+  padding: 0 2.5rem 2.5rem 0;
+  width: 100%;
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2.5rem;
@@ -322,6 +397,7 @@ footer {
   background-color: #5463aa;
   height: 250px;
   color: white;
+  margin-top: 10rem;
 }
 
 .copyright {
