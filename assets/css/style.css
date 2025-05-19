@@ -26,7 +26,7 @@
 header {
   position: absolute;
   background-color: rgba(25, 29, 55, 0.8);
-  height: 6rem;
+  height: 7rem;
   width: 100vw;
   z-index: 99;
   top: -20%;
@@ -45,11 +45,14 @@ header div {
   margin-left: 30vw;
 }
 
-header svg {
-  width: 10rem;
+header a {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.7rem;
 }
 
-header a {
+#about-link {
   font-size: 1.5rem;
   text-decoration: underline;
   font-weight: 600;
@@ -66,6 +69,7 @@ header a {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #5463aa;
 }
 
 #start .wave {
@@ -136,21 +140,6 @@ header a {
   z-index: 1;
   top: -10%;
 }
-
-/* .about {
-  position: absolute;
-  z-index: 1;
-  right: 10%;
-  top: 10%;
-  font-family: "Tektur";
-}
-
-.about a {
-  font-size: 2.25rem;
-  text-decoration: underline;
-  font-weight: 600;
-  color: white;
-} */
 
 #start svg {
   width: 35rem;
@@ -273,6 +262,7 @@ header a {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2.5rem;
   justify-items: center;
+  margin-bottom: 7rem;
 }
 
 /* Flip cards */
@@ -397,8 +387,12 @@ footer {
   background-color: #5463aa;
   height: 250px;
   color: white;
-  margin-top: 10rem;
+  width: 100%;
 }
+
+/* footer.active {
+  top: 50vh;
+} */
 
 .copyright {
   font-family: "Tektur";
@@ -427,6 +421,22 @@ footer {
 
 /* mobile */
 @media (max-width: 768px) {
+  header {
+    height: 5rem;
+  }
+
+  #about-link {
+    font-size: 1rem;
+  }
+
+  #start .wave span {
+    height: 300vh;
+  }
+
+  #start .wave {
+    top: -20%;
+  }
+
   #start svg {
     width: 100%;
   }
@@ -435,54 +445,105 @@ footer {
     stroke-width: 0.6;
   }
 
-  .about {
-    right: 5%;
-    top: 5%;
-  }
-
-  .about a {
-    font-size: 1.25rem;
-  }
-
   .presentation-container {
     padding: 3rem 1.5rem;
   }
 
   .presentation-accroche {
-    font-size: clamp(2.5rem, 10vw, 4rem);
+    font-size: clamp(3.5rem, 10vw, 5rem);
+    margin-top: 7rem;
     margin-bottom: 4rem;
   }
 
   .presentation-text {
-    font-size: clamp(0.4rem, 4vw, 1.5rem);
-    padding: 0 1rem;
+    font-size: clamp(0.7rem, 4vw, 1.3rem);
+  }
+
+  .flip-card-container {
+    padding-right: 2rem;
+  }
+
+  #grid {
+    display: flex;
+    padding: 0;
+    margin-bottom: 0;
+    height: 45rem;
+    overflow-x: scroll;
+  }
+
+  #outils {
+    padding-top: 3rem;
   }
 
   footer {
     flex-direction: column;
     text-align: center;
+    padding-top: 2rem;
+    height: 15rem;
   }
 }
 
 /* tablettes */
 @media (min-width: 769px) and (max-width: 1024px) {
+  header {
+    height: 6rem;
+  }
+
+  #about-link {
+    font-size: 1.2rem;
+  }
+
+  #start .wave span {
+    height: 320vh;
+  }
+
+  #start .wave {
+    top: -15%;
+  }
+
+  #start svg {
+    width: 80%;
+  }
+
+  #start svg path {
+    stroke-width: 0.5;
+  }
+
   .presentation-container {
-    padding: 4rem 2rem;
+    padding: 4rem 2.5rem;
   }
 
   .presentation-accroche {
-    font-size: clamp(3rem, 7vw, 5rem);
-    margin-bottom: 4rem;
+    font-size: clamp(4rem, 8vw, 6rem);
+    margin-top: 6rem;
+    margin-bottom: 3rem;
   }
 
   .presentation-text {
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    padding: 0 2rem;
+    font-size: clamp(1.1rem, 3vw, 1.7rem);
+  }
+
+  .flip-card-container {
+    padding-right: 2.5rem;
+  }
+
+  #grid {
+    display: flex;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+    height: 55rem;
+    overflow-x: scroll;
+  }
+
+  #outils {
+    padding-top: 5rem;
   }
 
   footer {
     flex-direction: column;
     text-align: center;
+    padding-top: 2.5rem;
+    height: 18rem;
   }
 }
 

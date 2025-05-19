@@ -1,19 +1,17 @@
 let scroll = 0;
+let lastTouchY = null;
 
-document.addEventListener("wheel", function (e) {
+function handleScroll(deltaY) {
   const hero = document.querySelector("#hero");
   const wave = document.querySelector(".wave");
   const header = document.querySelector("#header");
   const outils = document.querySelector("#outils");
   const fadeIn = document.querySelectorAll(".fade-in-up");
+  const footer = document.querySelector("#footer");
 
-  scroll += e.deltaY;
-  if (scroll < 0) {
-    scroll = 0;
-  }
-  if (scroll > 1200) {
-    scroll = 1200;
-  }
+  scroll += deltaY;
+  if (scroll < 0) scroll = 0;
+  if (scroll > 1200) scroll = 1200;
   console.log(scroll);
 
   if (scroll > 0) {
@@ -30,10 +28,40 @@ document.addEventListener("wheel", function (e) {
     } else {
       outils.classList.remove("scrolled");
     }
+    if (scroll > 900) {
+      footer.classList.add("active");
+    } else {
+      footer.classList.remove("active");
+    }
   } else {
     hero.classList.remove("scrolled");
     wave.classList.remove("scrolled");
     header.classList.remove("active");
     fadeIn.forEach((element) => element.classList.remove("in-view"));
   }
+}
+
+// Desktop scroll
+document.addEventListener("wheel", function (e) {
+  handleScroll(e.deltaY);
+});
+
+// Mobile touch scroll
+document.addEventListener("touchstart", function (e) {
+  if (e.touches.length === 1) {
+    lastTouchY = e.touches[0].clientY;
+  }
+});
+
+document.addEventListener("touchmove", function (e) {
+  if (e.touches.length === 1 && lastTouchY !== null) {
+    const currentY = e.touches[0].clientY;
+    const deltaY = lastTouchY - currentY; // positive = scroll down
+    handleScroll(deltaY);
+    lastTouchY = currentY;
+  }
+});
+
+document.addEventListener("touchend", function () {
+  lastTouchY = null;
 });
