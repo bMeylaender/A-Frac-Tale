@@ -1,0 +1,39 @@
+{"cards":[
+    {
+      "title": "L'arbre fractal",
+      "image": {
+        "src": "assets/img/arbresimple.svg",
+        "alt": "arbre"
+      },
+      "description": "À la lisière du réel et de l'imaginaire, s'élève un arbre pas comme les autres. Tissé de symétries et de mystères, de son tronc jaillissent des branches qui se divisent, encore et encore, chacune miroir de l'autre, comme si le temps lui-même s'y démultipliait.",
+      "link": {
+        "href": "arbre.html",
+        "label": "Créer"
+      }
+    },
+    {
+      "title": "Le flocon",
+      "image": {
+        "src": "assets/img/flocon-blanc.svg",
+        "alt": "flocon"
+      },
+      "description": "À la frontière fragile entre l'infini et l'éphémère, naît un flocon, éphémère et pourtant éternel. De simples triangles se rencontrent et se disloquent. À chaque division, à chaque pli, l'espace se courbe et se tord, défiant les lois de la simplicité et ouvrant les portes d'un monde sans fin, où les limites se dissolvent.",
+      "link": {
+        "href": "flocon.html",
+        "label": "Créer"
+      }
+    },
+    {
+      "title": "Le jeu du chaos",
+      "image": {
+        "src": "assets/img/sierpinski.svg",
+        "alt": "sierpinski"
+      },
+      "description": "Dans l'ombre fugace du hasard, là où l'ordre semble s'effacer et où chaque mouvement génère une nouvelle possibilité, se joue le jeu du chaos. Il naît d'un simple lancement de particules qui, pourtant, recèlent un secret insoupçonné. Les règles sont simples, mais les conséquences infinies.",
+      "link": {
+        "href": "chaos.html",
+        "label": "Créer"
+      }
+    }
+  ]
+}

@@ -41,12 +41,10 @@ function handleScroll(deltaY) {
   }
 }
 
-// Desktop scroll
 document.addEventListener("wheel", function (e) {
   handleScroll(e.deltaY);
 });
 
-// Mobile touch scroll
 document.addEventListener("touchstart", function (e) {
   if (e.touches.length === 1) {
     lastTouchY = e.touches[0].clientY;
@@ -56,7 +54,7 @@ document.addEventListener("touchstart", function (e) {
 document.addEventListener("touchmove", function (e) {
   if (e.touches.length === 1 && lastTouchY !== null) {
     const currentY = e.touches[0].clientY;
-    const deltaY = lastTouchY - currentY; // positive = scroll down
+    const deltaY = lastTouchY - currentY;
     handleScroll(deltaY);
     lastTouchY = currentY;
   }
@@ -65,3 +63,34 @@ document.addEventListener("touchmove", function (e) {
 document.addEventListener("touchend", function () {
   lastTouchY = null;
 });
+
+const cardsContainer = document.querySelector("#grid");
+
+fetch("http://127.0.0.1:5501/db.json")
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    const cards = data.cards;
+    let html = "";
+    cards.forEach(function (post) {
+      html += `
+      <div class="flip-card-container">
+        <div class="flip-card">
+            <div class="card-front">
+                <figure>
+                    <div class="img-bg"></div>
+                    <img src="${post.image.src}" alt="${post.image.alt}">
+                    <figcaption>${post.title}</figcaption>
+                </figure>
+            </div>
+            <div class="card-back">
+                <p class="card-desc">${post.description}</p>
+                <a href="${post.link.href}" class="create">Créer</a>  
+            </div>
+        </div>
+    </div>
+      `;
+    });
+    cardsContainer.innerHTML = html;
+  });

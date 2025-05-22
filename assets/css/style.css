@@ -23,7 +23,7 @@
 
 /* PAGE D'ACCUEIL */
 
-header {
+#header {
   position: absolute;
   background-color: rgba(25, 29, 55, 0.8);
   height: 7rem;
@@ -33,11 +33,11 @@ header {
   transition: top 0.5s ease-in-out;
 }
 
-header.active {
+#header.active {
   top: 0;
 }
 
-header div {
+#header div {
   display: flex;
   height: 100%;
   justify-content: space-around;
@@ -45,7 +45,7 @@ header div {
   margin-left: 30vw;
 }
 
-header a {
+#header a {
   height: 100%;
   display: flex;
   align-items: center;
@@ -546,8 +546,6 @@ footer {
     height: 18rem;
   }
 }
-
-/* PAGE ARBRE FRACTAL */
 
 .header-outil {
   background-color: rgba(25, 29, 55, 1);
