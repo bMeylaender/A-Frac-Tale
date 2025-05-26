@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+html, body {
+    overscroll-behavior: none;
+    overscroll-behavior-y: none;
+    touch-action: pan-x pan-y;
+}
+
 @font-face {
   font-family: "Tektur";
   src: url("../fonts/Tektur/Tektur-VariableFont_wdth,wght.woff2")
@@ -22,6 +28,9 @@
 }
 
 /* PAGE D'ACCUEIL */
+.body-accueil{
+  background-color: #5463aa;
+}
 
 #header {
   position: absolute;
@@ -518,6 +527,10 @@ footer {
   header {
     height: 5rem;
   }
+
+  #start {
+  height: 90vh;
+}
 
   #about-link {
     font-size: 1rem;
@@ -1404,3 +1417,13 @@ form button[type="submit"]:hover {
   height: 73.4vh;
 }
 
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.mentions-main a,
+.contact-section a {
+  color: rgba(0, 161, 153, 1);
+  text-decoration: none;
+}

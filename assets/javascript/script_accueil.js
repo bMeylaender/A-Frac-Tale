@@ -94,3 +94,19 @@ fetch("db.json")
     });
     cardsContainer.innerHTML = html;
   });
+
+
+  let maybePrevent = false;
+    window.addEventListener('touchstart', function(e) {
+        if (window.scrollY === 0) {
+            maybePrevent = true;
+        }
+    }, {passive: false});
+    window.addEventListener('touchmove', function(e) {
+        if (maybePrevent) {
+            maybePrevent = false;
+            if (e.touches[0].clientY > 0) {
+                e.preventDefault();
+            }
+        }
+    }, {passive: false});
