@@ -8,14 +8,16 @@ const width = canvas.width;
 const height = canvas.height;
 
 let scale = 1;
-let offsetX = -750;
-let offsetY = -600;
+let offsetX = 0;
+let offsetY = 0;
 let isPanning = false;
 let startPan = { x: 0, y: 0 };
 
 const controls = {
   colorDraw: document.getElementById("colorDraw"),
   bgColor: document.getElementById("bgColor"),
+  nbPoints: document.getElementById("nbPoints"),
+  vRendu: document.getElementById("vRendu"),
 };
 
 let A = { x: width / 2, y: 20 };
@@ -43,19 +45,58 @@ function chaosGame(iterations, color) {
   }
 }
 
-function render() {
-  const color = controls.colorDraw.value;
+function updateVertices() {
+  const marginY = canvas.height * 0.15;
+  const marginX = canvas.width * 0.25;
 
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.save();
-  ctx.setTransform(1, 0, 0, 1, 0, 0);
-  ctx.fillStyle = controls.bgColor.value;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.translate(offsetX, offsetY);
-  ctx.scale(scale, scale);
-  ctx.translate(canvas.width / 2, canvas.height);
-  chaosGame(30000, color);
-  ctx.restore();
+  A = { x: canvas.width / 2, y: marginY };
+  B = { x: marginX, y: canvas.height - marginY };
+  C = { x: canvas.width - marginX, y: canvas.height - marginY };
+  vertices = [A, B, C];
+}
+
+let animationId = null;
+let pointsPerFrame = 50; 
+let totalPoints = 75000;
+let drawnPoints = 0;
+
+function animate() {
+  if (drawnPoints === 0) {
+    updateVertices();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.save();
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.fillStyle = controls.bgColor.value;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.translate(offsetX, offsetY);
+    ctx.scale(scale, scale);
+  }
+
+  const color = controls.colorDraw.value;
+  chaosGame(pointsPerFrame, color);
+  drawnPoints += pointsPerFrame;
+
+  if (drawnPoints < totalPoints) {
+    animationId = requestAnimationFrame(animate);
+  } else {
+    ctx.restore();
+    animationId = null;
+  }
+}
+
+function render() {
+  totalPoints = controls.nbPoints && controls.nbPoints.value
+  ? parseInt(controls.nbPoints.value)
+  : 10000;
+  pointsPerFrame = controls.vRendu && controls.vRendu.value
+  ? parseInt(controls.vRendu.value)
+  : 50;
+  if (animationId) {
+    cancelAnimationFrame(animationId);
+    ctx.restore(); 
+  }
+  drawnPoints = 0;
+  animate();
 }
 
 render();
@@ -69,6 +110,10 @@ render();
 function resizeCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight - 150;
+  current = {
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+  };
   render();
 }
 

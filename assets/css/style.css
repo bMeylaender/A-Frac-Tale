@@ -683,6 +683,8 @@ footer {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  transition: height 0.5s ease-in-out,
+    padding 0.5s ease-in-out;
 }
 
 .options-container {
@@ -698,6 +700,8 @@ footer {
 
 .pannel.active {
   height: 3rem;
+  justify-content: start;
+  padding-top: 10px;
 }
 
 .hide-show {
@@ -708,6 +712,7 @@ footer {
   font-weight: 600;
   width: 10rem;
   height: 4.375rem;
+  max-height: 43px;
   border-radius: 5px;
 }
 
@@ -1393,5 +1398,9 @@ form button[type="submit"]:hover {
   display:flex;
   justify-content: center;
 
+}
+
+.mentions-legales{
+  height: 73.4vh;
 }
 
