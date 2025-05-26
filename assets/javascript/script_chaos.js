@@ -120,7 +120,7 @@ function resizeCanvas() {
 window.addEventListener("resize", resizeCanvas);
 resizeCanvas();
 
-canvas.addEventListener("wheel", (e) => {
+canvas.addEventListener("wheel", function(e) {
   e.preventDefault();
   const zoomFactor = 1.1;
   const mouseX = e.offsetX;
@@ -135,12 +135,12 @@ canvas.addEventListener("wheel", (e) => {
   render();
 });
 
-canvas.addEventListener("mousedown", (e) => {
+canvas.addEventListener("mousedown", function(e) {
   isPanning = true;
   startPan = { x: e.clientX, y: e.clientY };
 });
 
-canvas.addEventListener("mousemove", (e) => {
+canvas.addEventListener("mousemove", function(e) {
   if (!isPanning) return;
   const dx = e.clientX - startPan.x;
   const dy = e.clientY - startPan.y;
@@ -150,14 +150,14 @@ canvas.addEventListener("mousemove", (e) => {
   render();
 });
 
-canvas.addEventListener("touchstart", (e) => {
+canvas.addEventListener("touchstart", function(e) {
   e.preventDefault();
   isPanning = true;
   const touch = e.touches[0];
   startPan = { x: touch.clientX, y: touch.clientY };
 });
 
-canvas.addEventListener("touchmove", (e) => {
+canvas.addEventListener("touchmove", function(e) {
   e.preventDefault();
   if (!isPanning) return;
   const touch = e.touches[0];
@@ -182,7 +182,7 @@ function resetView() {
 
 resetViewBtn.addEventListener("click", resetView);
 
-document.getElementById("save").addEventListener("click", () => {
+document.getElementById("save").addEventListener("click", function() {
   const link = document.createElement("a");
   link.download = "mon_triangle_sierpinski.png";
   link.href = canvas.toDataURL();
@@ -191,7 +191,7 @@ document.getElementById("save").addEventListener("click", () => {
 
 let lastTouchDistance = null;
 
-canvas.addEventListener("touchmove", (e) => {
+canvas.addEventListener("touchmove", function(e) {
   if (e.touches.length === 2) {
     e.preventDefault();
 
@@ -222,7 +222,7 @@ canvas.addEventListener("touchmove", (e) => {
   }
 });
 
-canvas.addEventListener("touchend", (e) => {
+canvas.addEventListener("touchend", function(e) {
   if (e.touches.length < 2) {
     lastTouchDistance = null;
   }
