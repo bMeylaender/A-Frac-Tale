@@ -4,10 +4,11 @@
   box-sizing: border-box;
 }
 
-html, body {
-    overscroll-behavior: none;
-    overscroll-behavior-y: none;
-    touch-action: pan-x pan-y;
+html,
+body {
+  overscroll-behavior: none;
+  overscroll-behavior-y: none;
+  touch-action: pan-x pan-y;
 }
 
 @font-face {
@@ -28,7 +29,7 @@ html, body {
 }
 
 /* PAGE D'ACCUEIL */
-.body-accueil{
+.body-accueil {
   background-color: #5463aa;
 }
 
@@ -491,7 +492,6 @@ footer {
   align-items: center;
   overflow: hidden;
   z-index: 1;
-  
 }
 
 .mentions-link::before {
@@ -503,7 +503,7 @@ footer {
   bottom: 0;
   z-index: -1;
   transition: clip-path 1.5s ease-out;
-    clip-path: path(
+  clip-path: path(
     "M0 -0.12C16.66 -8.46 33.34 -12.62 50 -12.62C75 -12.62 71.82 0.15 100 -0.12C128.18 -0.4 125 -34.5 150 -34.5C175 -34.5 174.34 -4.45 200 -0.12C225.66 4.2 225.42 -17.95 250 -18.28C274.58 -18.62 275.52 1.54 300.96 -0.12C326.38 -1.79 324.32 -25.12 349.08 -25.12C365.58 -25.12 382.56 -16.79 400 -0.12L400 -34.37L0 -34.37L0 -0.12Z"
   );
   background: rgba(25, 29, 55, 0.95);
@@ -519,7 +519,6 @@ footer {
   clip-path: ellipse(100% 0% at 50% 0%);
 }
 
-
 /* Responsive */
 
 /* mobile */
@@ -529,8 +528,8 @@ footer {
   }
 
   #start {
-  height: 90vh;
-}
+    height: 90vh;
+  }
 
   #about-link {
     font-size: 1rem;
@@ -696,8 +695,7 @@ footer {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  transition: height 0.5s ease-in-out,
-    padding 0.5s ease-in-out;
+  transition: height 0.5s ease-in-out, padding 0.5s ease-in-out;
 }
 
 .options-container {
@@ -956,7 +954,7 @@ input[type="color"]::-moz-color-swatch {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out; /* Added transform easing */
+  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
   overflow: auto;
   font-family: "Tektur", sans-serif;
   display: flex;
@@ -965,8 +963,8 @@ input[type="color"]::-moz-color-swatch {
 
 .modal-container.active .modal {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1); /* Smooth scaling effect */
-  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out; /* Updated easing */
+  transform: translate(-50%, -50%) scale(1);
+  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
 }
 
 .close-modal-container {
@@ -1279,8 +1277,6 @@ input[type="color"]::-moz-color-swatch {
   }
 }
 
-
-
 #title-mentions {
   font-family: "Tektur";
   color: white;
@@ -1297,7 +1293,6 @@ input[type="color"]::-moz-color-swatch {
   background-color: rgba(25, 29, 55, 0.95);
   height: 7rem;
   width: 100vw;
-  
 }
 
 .header-pages div {
@@ -1316,11 +1311,10 @@ input[type="color"]::-moz-color-swatch {
 
 .header-pages #svg-container {
   height: 100%;
-
 }
 
 .about-section,
-.mentions-legales{
+.mentions-legales {
   background-color: rgba(25, 29, 55, 1);
   font-family: Tektur;
   color: white;
@@ -1328,7 +1322,7 @@ input[type="color"]::-moz-color-swatch {
 }
 
 .about-section h1,
- .mentions-legales h1 {
+.mentions-legales h1 {
   font-size: 3rem;
   margin-bottom: 2rem;
 }
@@ -1356,7 +1350,6 @@ input[type="color"]::-moz-color-swatch {
   font-family: Tektur;
   color: white;
   padding: 5rem 5rem 5rem 5rem;
-  
 }
 
 .contact-section h2 {
@@ -1399,22 +1392,15 @@ form button[type="submit"]:hover {
   background-color: #43508f;
 }
 
-
-#form-message{
-  display:none; 
-  color:rgba(0, 161, 153, 1);
-  margin-top:2rem;
-  
+#form-message {
+  display: none;
+  color: rgba(0, 161, 153, 1);
+  margin-top: 2rem;
 }
 
-#form-message.active{
-  display:flex;
+#form-message.active {
+  display: flex;
   justify-content: center;
-
-}
-
-.mentions-legales{
-  height: 73.4vh;
 }
 
 h2 {

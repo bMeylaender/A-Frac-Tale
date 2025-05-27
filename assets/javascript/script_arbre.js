@@ -4,11 +4,13 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let scale = 1;
-let offsetX = 0;
-let offsetY = -150;
-let isPanning = false;
-let startPan = { x: 0, y: 0 };
+const state = {
+  scale: 1,
+  offsetX: 0,
+  offsetY: -150,
+  isPanning: false,
+  startPan: { x: 0, y: 0 },
+};
 
 const controls = {
   angle: document.getElementById("angle"),
@@ -83,132 +85,15 @@ function render() {
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.fillStyle = controls.bgColor.value;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.translate(offsetX, offsetY);
-  ctx.scale(scale, scale);
+  ctx.translate(state.offsetX, state.offsetY);
+  ctx.scale(state.scale, state.scale);
   ctx.translate(canvas.width / 2, canvas.height);
   drawTree(0, 0, length, 0, depth, branchWidth, color, angle);
   ctx.restore();
 }
-
-Object.values(controls).forEach((input) => {
-  input.addEventListener("input", render);
-});
-
+const resetViewBtn = document.getElementById("resetViewBtn");
 render();
 
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight - 150;
-  render();
-}
+import { setupCanvasEvents } from "./utils.js";
 
-window.addEventListener("resize", resizeCanvas);
-resizeCanvas();
-
-canvas.addEventListener("wheel", function(e) {
-  e.preventDefault();
-  const zoomFactor = 1.1;
-  const mouseX = e.offsetX;
-  const mouseY = e.offsetY;
-
-  const zoom = e.deltaY < 0 ? zoomFactor : 1 / zoomFactor;
-
-  offsetX = mouseX - (mouseX - offsetX) * zoom;
-  offsetY = mouseY - (mouseY - offsetY) * zoom;
-
-  scale *= zoom;
-  render();
-});
-
-canvas.addEventListener("mousedown", function(e) {
-  isPanning = true;
-  startPan = { x: e.clientX, y: e.clientY };
-});
-
-canvas.addEventListener("mousemove", function(e) {
-  if (!isPanning) return;
-  const dx = e.clientX - startPan.x;
-  const dy = e.clientY - startPan.y;
-  offsetX += dx;
-  offsetY += dy;
-  startPan = { x: e.clientX, y: e.clientY };
-  render();
-});
-
-canvas.addEventListener("touchstart", function(e) {
-  e.preventDefault();
-  isPanning = true;
-  const touch = e.touches[0];
-  startPan = { x: touch.clientX, y: touch.clientY };
-});
-
-canvas.addEventListener("touchmove", function(e) {
-  e.preventDefault();
-  if (!isPanning) return;
-  const touch = e.touches[0];
-  const dx = touch.clientX - startPan.x;
-  const dy = touch.clientY - startPan.y;
-  offsetX += dx;
-  offsetY += dy;
-  startPan = { x: touch.clientX, y: touch.clientY };
-  render();
-});
-
-canvas.addEventListener("mouseup", () => (isPanning = false));
-canvas.addEventListener("mouseleave", () => (isPanning = false));
-canvas.addEventListener("touchend", () => (isPanning = false));
-
-function resetView() {
-  scale = 1;
-  offsetX = 0;
-  offsetY = -150;
-  render();
-}
-
-resetViewBtn.addEventListener("click", resetView);
-
-document.getElementById("save").addEventListener("click", () => {
-  const link = document.createElement("a");
-  link.download = "mon_arbre_fractal.png";
-  link.href = canvas.toDataURL();
-  link.click();
-});
-
-let lastTouchDistance = null;
-
-canvas.addEventListener("touchmove", function(e) {
-  if (e.touches.length === 2) {
-    e.preventDefault();
-
-    const touch1 = e.touches[0];
-    const touch2 = e.touches[1];
-
-    const currentDistance = Math.sqrt(
-      Math.pow(touch2.clientX - touch1.clientX, 2) +
-        Math.pow(touch2.clientY - touch1.clientY, 2)
-    );
-
-    if (lastTouchDistance) {
-      const zoomFactor = 1.03;
-      const zoom =
-        currentDistance > lastTouchDistance ? zoomFactor : 1 / zoomFactor;
-
-      const centerX = (touch1.clientX + touch2.clientX) / 2;
-      const centerY = (touch1.clientY + touch2.clientY) / 2;
-
-      offsetX = centerX - (centerX - offsetX) * zoom;
-      offsetY = centerY - (centerY - offsetY) * zoom;
-
-      scale *= zoom;
-      render();
-    }
-
-    lastTouchDistance = currentDistance;
-  }
-});
-
-canvas.addEventListener("touchend", function(e) {
-  if (e.touches.length < 2) {
-    lastTouchDistance = null;
-  }
-});
+setupCanvasEvents(canvas, controls, render, resetViewBtn, state);

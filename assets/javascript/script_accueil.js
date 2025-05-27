@@ -12,7 +12,7 @@ function handleScroll(deltaY) {
   scroll += deltaY;
   if (scroll < 0) scroll = 0;
   if (scroll > 1200) scroll = 1200;
-  console.log(scroll);
+  // console.log(scroll);
 
   if (scroll > 0) {
     hero.classList.add("scrolled");
@@ -95,18 +95,25 @@ fetch("db.json")
     cardsContainer.innerHTML = html;
   });
 
-
-  let maybePrevent = false;
-    window.addEventListener('touchstart', function(e) {
-        if (window.scrollY === 0) {
-            maybePrevent = true;
-        }
-    }, {passive: false});
-    window.addEventListener('touchmove', function(e) {
-        if (maybePrevent) {
-            maybePrevent = false;
-            if (e.touches[0].clientY > 0) {
-                e.preventDefault();
-            }
-        }
-    }, {passive: false});
+let maybePrevent = false;
+window.addEventListener(
+  "touchstart",
+  function (e) {
+    if (window.scrollY === 0) {
+      maybePrevent = true;
+    }
+  },
+  { passive: false }
+);
+window.addEventListener(
+  "touchmove",
+  function (e) {
+    if (maybePrevent) {
+      maybePrevent = false;
+      if (e.touches[0].clientY > 0) {
+        e.preventDefault();
+      }
+    }
+  },
+  { passive: false }
+);

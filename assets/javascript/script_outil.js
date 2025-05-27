@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
   function toggleModal() {
     modalContainer.classList.toggle("active");
     mobileNav.classList.remove("active");
+    pannel.classList.toggle("active");
+    hideBtn.disabled = "true";
   }
 
   const hideBtn = document.querySelector(".hide-show");
