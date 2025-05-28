@@ -159,6 +159,10 @@ body {
   animation: animate 15s linear infinite;
 }
 
+#titre-accueil {
+  display: none;
+}
+
 @keyframes animate {
   0% {
     transform: translate(-50%, -75%) scale(1) rotate(0deg);
