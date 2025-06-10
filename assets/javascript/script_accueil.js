@@ -1,5 +1,6 @@
 let scroll = 0;
 let lastTouchY = null;
+let flipCardsAnimated = false;
 
 function handleScroll(deltaY) {
   const hero = document.querySelector("#hero");
@@ -7,7 +8,6 @@ function handleScroll(deltaY) {
   const header = document.querySelector("#header");
   const outils = document.querySelector("#outils");
   const fadeIn = document.querySelectorAll(".fade-in-up");
-  const footer = document.querySelector("#footer");
 
   scroll += deltaY;
   if (scroll < 0) scroll = 0;
@@ -25,13 +25,21 @@ function handleScroll(deltaY) {
     }, 600);
     if (scroll > 600) {
       outils.classList.add("scrolled");
+      if (!flipCardsAnimated) {
+        const flipCards = document.querySelectorAll(".flip-card");
+        flipCards.forEach((card, i) => {
+          setTimeout(() => {
+            card.classList.add("hovered");
+            setTimeout(() => {
+              card.classList.remove("hovered");
+            }, 1000);
+          }, i * 200);
+        });
+        flipCardsAnimated = true;
+      }
     } else {
       outils.classList.remove("scrolled");
-    }
-    if (scroll > 900) {
-      footer.classList.add("active");
-    } else {
-      footer.classList.remove("active");
+      flipCardsAnimated = false;
     }
   } else {
     hero.classList.remove("scrolled");
@@ -62,6 +70,19 @@ document.addEventListener("touchmove", function (e) {
 
 document.addEventListener("touchend", function () {
   lastTouchY = null;
+});
+
+document.addEventListener("keydown", function (e) {
+  if (e.code === "Space") {
+    e.preventDefault();
+    handleScroll(301);
+  }
+  if (e.code === "ArrowDown") {
+    handleScroll(100);
+  }
+  if (e.code === "ArrowUp") {
+    handleScroll(-100);
+  }
 });
 
 const cardsContainer = document.querySelector("#grid");
@@ -98,7 +119,7 @@ fetch("db.json")
 let maybePrevent = false;
 window.addEventListener(
   "touchstart",
-  function (e) {
+  function () {
     if (window.scrollY === 0) {
       maybePrevent = true;
     }
@@ -117,3 +138,27 @@ window.addEventListener(
   },
   { passive: false }
 );
+
+document
+  .getElementById("newsletter-form")
+  .addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    fetch("assets/php/newsletter.php", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.text())
+      .then((result) => {
+        console.log(result);
+        document.getElementById("form-message").innerHTML = `${result}`;
+        form.reset();
+      })
+      .catch((error) => {
+        document.getElementById("form-message").innerHTML =
+          "<p>Erreur lors de l'envoi du message.</p>";
+      });
+  });

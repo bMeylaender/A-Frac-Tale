@@ -102,7 +102,7 @@ function setupCanvasEvents(canvas, controls, render, resetViewBtn, state) {
 
   document.getElementById("save").addEventListener("click", function () {
     const link = document.createElement("a");
-    link.download = "mon_flocon.png";
+    link.download = "ma_fractal.png";
     link.href = canvas.toDataURL();
     link.click();
   });

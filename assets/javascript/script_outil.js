@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     modalContainer.classList.toggle("active");
     mobileNav.classList.remove("active");
     pannel.classList.toggle("active");
-    hideBtn.disabled = "true";
+    hideBtn.disabled = !hideBtn.disabled;
   }
 
   const hideBtn = document.querySelector(".hide-show");

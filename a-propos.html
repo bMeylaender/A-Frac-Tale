@@ -23,12 +23,12 @@
             </p>
             <p>
                 Ce site est une invitation à explorer l’univers fascinant des fractales, ces formes mathématiques infinies qui se retrouvent partout autour de nous, de la nature à l’art en passant par la science.<br>
-                Notre objectif est de rendre accessible la beauté et la complexité des fractales à tous, à travers des explications simples, des visualisations interactives et des ressources pédagogiques.
+                Mon objectif est de rendre accessible la beauté et la complexité des fractales à tous, à travers des explications simples, des visualisations interactives et des ressources pédagogiques.
             </p>
-            <h2>Qui sommes-nous ?</h2>
+            <h2>Qui suis-je ?</h2>
             <p>
                 Passionnés de mathématiques, pour partager mon émerveillement devant la poésie visuelle des fractales. <br>
-                J'ai créé ce orojet dans le cadre de ma formation.
+                J'ai créé ce projet dans le cadre de ma formation.
                 
             </p>
             <h2>Ce que vous trouverez ici :</h2>
@@ -44,15 +44,15 @@
         </section>
         <section class="contact-section">
             <h2>Contact</h2>
-            <form id="contact-form">
+            <form id="contact-form" action="envoyer_mail.php" method="POST">
                 <label for="name">Nom :</label>
-                <input type="text" id="name" name="name" required>
+                <input type="text" id="name" name="name" placeholder="Nom" >
 
                 <label for="email">Email :</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" placeholder="Email" >
 
                 <label for="message">Message :</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
+                <textarea id="message" name="message" rows="5" placeholder="Votre message..." ></textarea>
                 <label>
                 <input type="checkbox" required>
                     J’accepte que mes informations soient utilisées pour me répondre, conformément à la <a href="mentions_legales.html" target="_blank">politique de confidentialité</a>.
@@ -60,7 +60,7 @@
                 <button type="submit">Envoyer</button>
             </form>
             <div id="form-message">
-                Merci pour votre message !
+               
             </div>
         </section>
     </main>

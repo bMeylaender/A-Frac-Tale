@@ -1,9 +1,22 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('contact-form');
-    const messageDiv = document.getElementById('form-message');
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
+document
+  .getElementById("contact-form")
+  .addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    fetch("assets/php/envoyer_mail.php", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.text())
+      .then((result) => {
+        document.getElementById("form-message").innerHTML = `${result}`;
         form.reset();
-        messageDiv.classList.add("active")
-    });
-});
+      })
+      .catch((error) => {
+        document.getElementById("form-message").innerHTML =
+          "<p>Erreur lors de l'envoi du message.</p>";
+      });
+  });
