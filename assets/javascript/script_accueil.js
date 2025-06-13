@@ -11,8 +11,8 @@ function handleScroll(deltaY) {
 
   scroll += deltaY;
   if (scroll < 0) scroll = 0;
-  if (scroll > 1200) scroll = 1200;
-  // console.log(scroll);
+  if (scroll > 400) scroll = 400;
+  console.log(scroll);
 
   if (scroll > 0) {
     hero.classList.add("scrolled");
@@ -23,7 +23,8 @@ function handleScroll(deltaY) {
     setTimeout(() => {
       fadeIn.forEach((element) => element.classList.add("in-view"));
     }, 600);
-    if (scroll > 600) {
+
+    if (scroll > 300) {
       outils.classList.add("scrolled");
       if (!flipCardsAnimated) {
         const flipCards = document.querySelectorAll(".flip-card");
@@ -32,7 +33,7 @@ function handleScroll(deltaY) {
             card.classList.add("hovered");
             setTimeout(() => {
               card.classList.remove("hovered");
-            }, 1000);
+            }, 2000);
           }, i * 200);
         });
         flipCardsAnimated = true;
@@ -49,9 +50,34 @@ function handleScroll(deltaY) {
   }
 }
 
-document.addEventListener("wheel", function (e) {
-  handleScroll(e.deltaY);
-});
+document.addEventListener(
+  "wheel",
+  function (e) {
+    const scrollSections = document.querySelectorAll(".scroll-section");
+    let inSection = false;
+
+    scrollSections.forEach((section) => {
+      if (section.contains(e.target)) {
+        inSection = true;
+        const atTop = section.scrollTop === 0;
+        const atBottom =
+          section.scrollTop + section.clientHeight >= section.scrollHeight - 1;
+        if ((e.deltaY < 0 && atTop) || (e.deltaY > 0 && atBottom)) {
+          e.preventDefault();
+          handleScroll(e.deltaY);
+        }
+
+        return;
+      }
+    });
+
+    if (!inSection) {
+      e.preventDefault();
+      handleScroll(e.deltaY);
+    }
+  },
+  { passive: false }
+);
 
 document.addEventListener("touchstart", function (e) {
   if (e.touches.length === 1) {
@@ -102,7 +128,7 @@ fetch("db.json")
                 <figure>
                     <div class="img-bg"></div>
                     <img src="${post.image.src}" alt="${post.image.alt}">
-                    <figcaption>${post.title}</figcaption>
+                    <figcaption><h3>${post.title}</h3></figcaption>
                 </figure>
             </div>
             <div class="card-back">
@@ -162,3 +188,16 @@ document
           "<p>Erreur lors de l'envoi du message.</p>";
       });
   });
+
+let circle1 = document.querySelector(".circle1");
+let circle2 = document.querySelector(".circle2");
+
+for (let i = 0; i <= 80; i++) {
+  let span1 = document.createElement("span");
+  span1.style.setProperty("--i", i);
+  circle1.appendChild(span1);
+
+  let span2 = document.createElement("span");
+  span2.style.setProperty("--i", i);
+  circle2.appendChild(span2);
+}

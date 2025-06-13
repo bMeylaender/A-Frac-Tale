@@ -279,6 +279,96 @@ body {
   text-align: center;
 }
 
+.infinity-box {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 40vw;
+  max-height: 500px;
+  min-height: 200px;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  --circle-size: min(60vw, 300px);
+  --bar-color: white;
+  --bar-width: 30px;
+  --bar-height: 5px;
+  position: relative;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  border-radius: 50%;
+  z-index: 10;
+  margin: 0 -15px;
+  color: var(--bar-color);
+}
+
+.circle span {
+  position: absolute;
+  top: 3%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(calc(var(--i) * 4.5deg));
+}
+
+.circle span::before {
+  position: absolute;
+  width: var(--bar-width);
+  content: "";
+  right: 0;
+  height: var(--bar-height);
+  background: currentColor;
+  top: calc(50% - var(--bar-height) / 2);
+  animation: infinity-animate 2s linear infinite;
+  animation-delay: calc(var(--i) * 0.0125s);
+}
+
+@keyframes infinity-animate {
+  0% {
+    background: currentColor;
+  }
+  70%,
+  100% {
+    background: transparent;
+    box-shadow: none;
+  }
+}
+
+.circle2 {
+  transform: rotate(180deg);
+}
+
+.circle2 span {
+  top: -3%;
+}
+
+.circle2 span::before {
+  animation-delay: calc(var(--i) * -0.0125s);
+}
+
+@media (max-width: 600px) {
+  .infinity-box {
+    height: 40vw;
+    min-height: 120px;
+    max-height: 220px;
+  }
+  .circle {
+    --circle-size: min(80vw, 180px);
+    margin: 0 -5px;
+  }
+}
+
+/* Accessibility: Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .circle span::before,
+  .circle2 span::before {
+    animation: none !important;
+  }
+}
+
 @keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -329,6 +419,10 @@ body {
 
 #outils::-webkit-scrollbar {
   display: none;
+}
+
+#outils h2 {
+  padding: 0 7.125rem 0 7.125rem;
 }
 
 #grid {
@@ -454,6 +548,14 @@ figcaption {
 .create:hover {
   background-color: rgb(255, 255, 255);
   color: black;
+}
+
+.separation {
+  background-color: #5463aa;
+  height: 2px;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 5rem;
 }
 
 #newsletter {
