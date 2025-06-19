@@ -269,6 +269,7 @@ body {
   font-size: 128px;
   font-size: clamp(2.5rem, 10vw, 8rem);
   margin-bottom: 7rem;
+  margin-top: 7rem;
 }
 
 .presentation-text {
@@ -277,6 +278,7 @@ body {
   font-size: 32px;
   font-weight: 500;
   text-align: center;
+  margin-top: 3rem;
 }
 
 .infinity-box {
@@ -674,6 +676,10 @@ footer {
     height: 5rem;
   }
 
+  .infinity-box {
+    display: none;
+  }
+
   #start {
     height: 90vh;
   }
@@ -740,6 +746,10 @@ footer {
 @media (min-width: 769px) and (max-width: 1024px) {
   header {
     height: 6rem;
+  }
+
+  .infinity-box {
+    display: none;
   }
 
   #about-link {
