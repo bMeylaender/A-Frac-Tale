@@ -66,7 +66,7 @@ function drawSnowflake() {
 
   const x3 = centerX;
   const y3 = centerY - size * Math.sin(Math.PI / 3);
-  console.log("x1:", x1, "y1:", y1, "x2:", x2, "y2:", y2);
+  // console.log("x1:", x1, "y1:", y1, "x2:", x2, "y2:", y2);
   ctx.lineWidth = width;
   ctx.strokeStyle = strokeColor;
 

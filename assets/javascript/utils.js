@@ -1,5 +1,4 @@
 function setupCanvasEvents(canvas, controls, render, resetViewBtn, state) {
-  // Attach input listeners
   Object.values(controls).forEach((input) => {
     input.addEventListener("input", render);
   });

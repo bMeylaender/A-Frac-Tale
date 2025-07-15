@@ -23,5 +23,5 @@ if (isset($_POST['email'])) {
         echo "<p class= error-message>Adresse email invalide.</p>";
     }
 } else {
-    echo "<p class= error-message>❗ Veuillez remplir tous les champs correctement.</p>";
+    echo "❗ Veuillez remplir tous les champs correctement.</p>";
 }
