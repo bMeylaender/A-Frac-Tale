@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $headers .= "Reply-To: $email\r\n";
 
         if (mail($to, $subject, $body, $headers)) {
-            echo "<p class= succes-message>✅ Votre message a été envoyé avec succès.</p>";
+            echo "✅ Votre message a été envoyé avec succès.</p>";
         } else {
             echo "<p class= error-message>❌ Une erreur est survenue lors de l'envoi du message.</p>";
         }

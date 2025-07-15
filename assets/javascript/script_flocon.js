@@ -49,8 +49,6 @@ function drawKoch(x1, y1, x2, y2, depth) {
 function drawSnowflake() {
   const depth = parseInt(controls.depth.value, 10);
   const width = parseFloat(controls.width.value, 10);
-  const strokeColor = controls.colorDraw.value;
-  // const fillColor = controls.colorDraw.value;
 
   ctx.beginPath();
 
@@ -66,16 +64,12 @@ function drawSnowflake() {
 
   const x3 = centerX;
   const y3 = centerY - size * Math.sin(Math.PI / 3);
-  // console.log("x1:", x1, "y1:", y1, "x2:", x2, "y2:", y2);
   ctx.lineWidth = width;
-  ctx.strokeStyle = strokeColor;
 
   drawKoch(x1, y1, x2, y2, depth);
   drawKoch(x2, y2, x3, y3, depth);
   drawKoch(x3, y3, x1, y1, depth);
-  // ctx.lineTo(x1, y1);
-  // ctx.closePath();
-  // ctx.fillStyle = fillColor;
+
   ctx.fill();
   ctx.stroke();
 }
